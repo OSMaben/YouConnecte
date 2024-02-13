@@ -111,7 +111,6 @@
                                 </button>
                             </div>
                             <hr class="mt-2 mb-2">
-                            <p class="text-gray-800 font-semibold">Comment</p>
                             <hr class="mt-2 mb-2">
 
                         </div>
@@ -168,7 +167,6 @@
                             </button>
                         </div>
                         <hr class="mt-2 mb-2">
-                        <p class="text-gray-800 font-semibold">Comment</p>
                         <hr class="mt-2 mb-2">
 
                     </div>
@@ -225,7 +223,6 @@
                             </button>
                         </div>
                         <hr class="mt-2 mb-2">
-                        <p class="text-gray-800 font-semibold">Comment</p>
                         <hr class="mt-2 mb-2">
 
                     </div>
