@@ -15,9 +15,9 @@
         class="fixed inset-x-0 top-0 z-10 w-full px-4 py-1 bg-white shadow-md border-slate-500 dark:bg-[#0c1015] transition duration-700 ease-out"
     >
         <div class="flex justify-between p-4">
-            <div class="text-[2rem] leading-[3rem] tracking-tight font-bold text-black dark:text-white">
+            <a href="/" class="text-[2rem] leading-[3rem] tracking-tight font-bold text-black dark:text-white" style="text-decoration: none">
                 YouConnect
-            </div>
+            </a>
 
             @if(Auth::check())
                 <div class="relative inline-block text-left">
