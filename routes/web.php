@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\PostController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +20,14 @@ use App\Http\Controllers\FrontController;
 Route::get('/', [FrontController::class, 'index']);
 Route::get('/search', [FrontController::class, 'find']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PostController::class, 'myPosts'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+// post
+Route::post('/addPost', [App\Http\Controllers\PostController::class, 'addPost'])->name('addPost');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,5 +38,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/messages', function () {
     return view('messages');
 });
+
+
+
+Route::get('/profile/{id}', [ProfileController::class, 'profileDetails']);
 
 require __DIR__.'/auth.php';
