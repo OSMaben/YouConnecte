@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+
 
 class PostController extends Controller
 {
@@ -13,6 +15,27 @@ class PostController extends Controller
     {
         //
     }
+
+    public function addPost(Request $request)
+    {
+        $post = new Post();
+        $post->content = $request->input('content');
+        $post->user_id = $request->input('user_id');
+        $post->date_creation = $request->input('date_creation');
+        $post->image = $request->input('image');
+        $post->save();
+    
+        return redirect('/dashboard');
+    }
+
+   public function myPosts(Request $request)
+{
+    $user_id = auth()->id(); 
+    $posts = Post::where('user_id', $user_id)->get(); 
+    return view('dashboard', ['posts' => $posts]);
+}
+
+
 
     /**
      * Show the form for creating a new resource.
