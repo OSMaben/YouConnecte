@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FrontController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('hero');
-});
+Route::get('/', [FrontController::class, 'index']);
+Route::get('/search', [FrontController::class, 'find']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -229,10 +229,150 @@
 
                     </div>
 
+                <div style="margin-top: 5rem; display: flex; align-items: center;justify-content: space-between">
+
+                    <h2 class="mb-4 font-bold text-xl  text-white">People You May Know</h2>
+                    <div class="p-3">
+                        <button onclick="openModal(true )" class="bg-gray-600 px-4 py-2 rounded text-white focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg>
+                        </button>
+
+                        <div id="modal_overlay" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0">
+
+                            <!-- modal -->
+                            <div id="modal" class="opacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-2/2 md:h-4/4 bg-white rounded shadow-lg transition-opacity transition-transform duration-300">
+
+
+                                <!-- button close -->
+                                <button
+                                    onclick="openModal(false)"
+                                    class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">
+                                    &cross;
+                                </button>
+
+                                <!-- header -->
+                                <div class="px-4 py-3 border-b border-gray-200">
+                                    <h2 class="text-xl font-semibold text-gray-600">Find New Friend</h2>
+                                </div>
+
+                                <!-- body -->
+                                <div class="w-full p-3">
+                                    <input class="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg " id="searchInput" type="search" name="query" placeholder="Search" />
+                                    <button type="submit" class="absolute right-2 top-3 mr-4">
+                                        <svg class="text-black h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
+                                      <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                                    </svg>
+                                    </button>
+                                    <div class="w-2/2 bg-white p-5 rounded-xl bg-opacity-60 backdrop-filter backdrop-blur-lg">
+                                        <div class="header-card flex justify-between font-semibold">
+                                            <div class=""></div>
+                                            <div class="flex items-center gap-x-1 text-sm text-blue-500">
+                                                <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path fill="none" d="M0 0h24v24H0z" />
+                                                    <path d="M1.181 12C2.121 6.88 6.608 3 12 3c5.392 0 9.878 3.88 10.819 9-.94 5.12-5.427 9-10.819 9-5.392 0-9.878-3.88-10.819-9zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                                                </svg>
+                                                <span>See all</span>
+                                            </div>
+                                        </div>
+                                        <!-- end header -->
+
+                                        <div class="card-content divide-y flex flex-col gap-y-3 mt-5">
+                                            <div id="searchResults"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- footer -->
+                                <div class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
+                                    <button
+                                        onclick="openModal(false)"
+                                        class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none"
+                                    >Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
 
                 </div>
             </div>
-        </div>
-    </section>
 
+        </div>
+
+    </section>
+    <script>
+        const modal_overlay = document.querySelector('#modal_overlay');
+        const modal = document.querySelector('#modal');
+
+        function openModal(value) {
+            const modalCl = modal.classList;
+            const overlayCl = modal_overlay.classList;
+
+            if (value) {
+                overlayCl.remove('hidden');
+                setTimeout(() => {
+                    modalCl.remove('opacity-0');
+                    modalCl.remove('-translate-y-full');
+                    modalCl.remove('scale-150');
+                }, 100);
+            } else {
+                modalCl.add('-translate-y-full');
+                setTimeout(() => {
+                    modalCl.add('opacity-0');
+                    modalCl.add('scale-150');
+                }, 100);
+                setTimeout(() => overlayCl.add('hidden'), 300);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(event) {
+            const query = event.target.value;
+            axios.get('/search', {
+                params: {
+                    query: query
+                }
+            })
+                .then(function(response) {
+                    const searchResults = response.data;
+                    const searchResultsContainer = document.getElementById('searchResults');
+                    searchResultsContainer.innerHTML = '';
+                    searchResults.forEach(function(user) {
+                        const cardContent = `
+                <div class="card-content-profil flex justify-between items-center">
+                    <div class="flex gap-x-2 items-center">
+                        <img class="avatar h-10 w-10 rounded-full border-4 border-opacity-40" src="data:image/jpeg;base64,${user.avatar}" alt="">
+                        <div class="card-name-user text-xs">
+                            <h3 class="font-semibold text-black">${user.name}</h3>
+                            <div class="flex items-center gap-x-1">
+                                <span class="h-3 w-3 rounded-full bg-green-500"></span>
+                                <span class="text-green-600">Online</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-action">
+                        <button class="flex items-center px-2 py-1 text-xs text-white bg-gray-500 hover:bg-gray-600">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                            </svg>
+                            <span class="">Invite</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+                        searchResultsContainer.insertAdjacentHTML('beforeend', cardContent);
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Error searching:', error);
+                });
+        });
+
+    </script>
 @endsection
